@@ -64,7 +64,8 @@ def main():
         files = glob(args.input_path,recursive=args.recursive)
         data = combine_sheets(files,args.output_file)
     else:
-        data = combine_sheets(args.input_path+'/*',args.output_file)
+        path = WindowsPath(args.input_path)
+        data = combine_sheets([str(p) for p in path.glob('*xls*')],args.output_file)
     print(
         f'Successfully created output {args.output_file}'
     )

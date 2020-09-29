@@ -31,7 +31,7 @@ def main():
     # Prepare to accept command line arguments
     parser = argparse.ArgumentParser(
         description="""Combine multiple excel files with a single excel"""\
-            """spreadsheet into one excel file with multiple sheets."""
+            """ spreadsheet into one excel file with multiple sheets."""
     )
     parser.add_argument(
         '-i', 

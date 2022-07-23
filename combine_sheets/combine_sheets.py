@@ -1,6 +1,6 @@
 from glob import glob
 from openpyxl import Workbook
-from pathlib import WindowsPath
+from pathlib import Path
 import xlrd
 import argparse
 import re
@@ -18,7 +18,7 @@ def combine_sheets(files,output_file):
             out_sheet = out.create_sheet(name[0])
             name = name[0]
         else:
-            name = WindowsPath(file).stem
+            name = Path(file).stem
             out_sheet = out.create_sheet(name)
         for row in range(ws.nrows):
             out_sheet.append([i.value for i in ws.row(row)])
@@ -64,7 +64,7 @@ def main():
         files = glob(args.input_path,recursive=args.recursive)
         data = combine_sheets(files,args.output_file)
     else:
-        path = WindowsPath(args.input_path)
+        path = Path(args.input_path)
         data = combine_sheets([str(p) for p in path.glob('*xls*')],args.output_file)
     print(
         f'Successfully created output {args.output_file}'
